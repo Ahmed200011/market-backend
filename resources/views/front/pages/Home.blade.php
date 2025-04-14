@@ -124,15 +124,12 @@
                             <img class="img-fluid" src="img/cat-1.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-
                             <p>{{$children->parent->category_name}}</p>
                             <h6>{{$children->category_name}}</h6>
-
                             <small class="text-body">100 Products</small>
                         </div>
                     </div>
                 </a>
-
             </div>
             @endforeach
             @endif
