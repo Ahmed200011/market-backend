@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +13,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('front.pages.home');
+        $Categories=Category::with(['parent','children'])->get();
+        return view('front.pages.home',compact('Categories'));
     }
 }

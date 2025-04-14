@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
@@ -36,6 +37,7 @@ Route::group(
                     return view('dashboard');
                 })->name('main');
                 Route::resource('user', UserController::class);
+                Route::resource('Category', CategoryController::class);
 
             });
 
