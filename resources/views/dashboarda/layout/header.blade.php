@@ -67,14 +67,14 @@
 
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">AUTH</span>
+                            <span class="hide-menu">website</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('login') }}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('page.home') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-login"></i>
                                 </span>
-                                <span class="hide-menu">{{ __('validation.custom.login') }}</span>
+                                <span class="hide-menu">{{ __('website') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

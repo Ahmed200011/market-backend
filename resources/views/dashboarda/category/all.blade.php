@@ -17,6 +17,10 @@
                                 <h6 class="fw-semibold mb-0">Id</h6>
                             </th>
                             <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">image</h6>
+                            </th>
+
+                            <th class="border-bottom-0">
                                 <h6 class="fw-semibold mb-0">Category_name</h6>
                             </th>
                             <th class="border-bottom-0">
@@ -29,6 +33,10 @@
                             <tr>
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">{{ $key + 1 }}</h6>
+                                </td>
+                                <td class="border-bottom-0 d-flex">
+                                    <img width="50" height="50" class=" border rounded-circle me-2"
+                                        src="{{ asset('dashboard/assets/images/categoryImage/'.$category->image) }}" alt="">
                                 </td>
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-1">{{ $category->category_name }}</h6>

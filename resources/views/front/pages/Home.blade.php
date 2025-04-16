@@ -121,7 +121,7 @@
                 <a class="text-decoration-none" href="">
                     <div class="cat-item d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                            <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                            <img class="img-fluid" src="{{asset('dashboard/assets/images/categoryImage/'.$children->image)  }}" alt="{{$children->category_name}}">
                         </div>
                         <div class="flex-fill pl-3">
                             <p>{{$children->parent->category_name}}</p>

@@ -129,9 +129,7 @@ class UserController extends Controller
             $image_name = uniqid() . $name;
             //   $storing=  $file->store('image','public');
             $storing = $file->move(public_path('dashboard/assets/images/user_image'), $image_name);
-            // if ($user->image) {
-            //     unlink(public_path('dashboard/assets/images/user_image/' . $user->image));
-            // }
+          
             unlink(public_path('dashboard/assets/images/user_image/' . $user->image));
             //   dd($storing);
         }
