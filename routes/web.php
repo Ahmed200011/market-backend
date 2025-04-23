@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\PageController;
+use App\Http\Controllers\Front\ShopController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -38,6 +41,7 @@ Route::group(
                 })->name('main');
                 Route::resource('user', UserController::class);
                 Route::resource('Category', CategoryController::class);
+                Route::resource('product', ProductController::class);
 
             });
 
@@ -51,6 +55,7 @@ Route::group(
         ->as('page.')
         ->group(function () {
             Route::get('/home',HomeController::class)->name('home');
+            Route::resource('/shop', ShopController::class );
 
 
         });

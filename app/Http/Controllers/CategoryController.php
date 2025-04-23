@@ -111,6 +111,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
 
+        // dd($category);
         $category = Category::find($id);
         unlink(public_path('dashboard/assets/images/categoryImage/' . $category->image));
 

@@ -83,28 +83,18 @@
                 </div>
             </div>
         </div>
-        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="row align-items-center justify-content-between bg-light py-3 px-xl-5 d-none d-lg-flex ">
             <div class="col-lg-4">
                 <a href="" class="text-decoration-none">
                     <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
                 </a>
             </div>
-            <div class="col-lg-4 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
+
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">Customer Service</p>
-                <h5 class="m-0">+012 345 6789</h5>
+                <a href="tel:01009198079"><h5 class="m-0">01009198079</h5></a>
+
             </div>
         </div>
     </div>
@@ -124,18 +114,19 @@
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         @foreach ($Categories as $category)
-                        <div class="nav-item dropdown dropright">
+                            <div class="nav-item dropdown dropright">
                                 @if ($category->children()->count() > 0)
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{$category->category_name}}
+                                    <a href="#" class="nav-link dropdown-toggle"
+                                        data-toggle="dropdown">{{ $category->category_name }}
                                         <i class="fa fa-angle-right float-right mt-1"></i></a>
                                     <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                        @foreach ( $category->children as $children )
-                                        <a href="" class="dropdown-item">{{$children->category_name}}</a>
+                                        @foreach ($category->children as $children)
+                                            <a href="" class="dropdown-item">{{ $children->category_name }}</a>
                                         @endforeach
                                     </div>
                                 @endif
                             </div>
-                            @endforeach
+                        @endforeach
                     </div>
                 </nav>
             </div>
@@ -151,8 +142,8 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="{{ route('page.home') }}" class="nav-item nav-link active">Home</a>
+                            <a href="{{route('page.shop.index') }}" class="nav-item nav-link">Shop</a>
                             <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
