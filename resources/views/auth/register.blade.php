@@ -59,6 +59,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('dashboard/assets/images/logos/logo2.png') }}" />
+
     <link rel="stylesheet" href="{{ asset('asset/css/register.css') }}">
     <title>Register</title>
 </head>
@@ -117,8 +119,7 @@
 
 
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <a class="underline text-sm "
-                            href="{{ route('login') }}">
+                        <a class="underline text-sm " href="{{ route('login') }}">
                             {{ __('Already registered?') }}
                         </a>
 
