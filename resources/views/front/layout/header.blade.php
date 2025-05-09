@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    {{-- <title>MultiShop - Online Shop Website Template</title> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -45,12 +45,38 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
                             Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
-                        </div>
+                        @if (Auth::user())
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ asset('dashboard/assets/images/profile/default.jpg') }}" alt=""
+                                        width="35" height="35" class="rounded-circle">
+                                </a>
+                                {{-- <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" --}}
+                                {{-- aria-labelledby="drop2"> --}}
+                                <div class="message-body">
+                                    <div class="ml-3">
+                                        <p>{{ Auth::user()->name }}</p>
+                                        <p>{{ Auth::user()->email }}</p>
+                                    </div>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="btn btn-outline-danger mx-3 mt-2 d-block">
+                                            {{ __('validation.custom.log-out') }}
+                                        </button>
+                                    </form>
+
+                                </div>
+                                {{-- </div> --}}
+                            </div>
+                        @else
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                                <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+                            </div>
+                        @endif
                     </div>
-                    <div class="btn-group mx-2">
+                    {{-- <div class="btn-group mx-2">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle"
                             data-toggle="dropdown">USD</button>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -67,7 +93,7 @@
                             <button class="dropdown-item" type="button">AR</button>
                             <button class="dropdown-item" type="button">RU</button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
@@ -93,7 +119,9 @@
 
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">Customer Service</p>
-                <a href="tel:01009198079"><h5 class="m-0">01009198079</h5></a>
+                <a href="tel:01009198079">
+                    <h5 class="m-0">01009198079</h5>
+                </a>
 
             </div>
         </div>
@@ -105,8 +133,8 @@
     <div class="container-fluid bg-dark mb-30">
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100"
-                    data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
+                    href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
                     <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
@@ -121,7 +149,8 @@
                                         <i class="fa fa-angle-right float-right mt-1"></i></a>
                                     <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                                         @foreach ($category->children as $children)
-                                            <a href="" class="dropdown-item">{{ $children->category_name }}</a>
+                                            <a href=""
+                                                class="dropdown-item">{{ $children->category_name }}</a>
                                         @endforeach
                                     </div>
                                 @endif
@@ -143,30 +172,32 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="{{ route('page.home') }}" class="nav-item nav-link active">Home</a>
-                            <a href="{{route('page.shop.index') }}" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                            <a href="{{ route('page.shop.index') }}" class="nav-item nav-link">Shop</a>
+
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                    <a href="{{ route('page.cart.index') }}" class="dropdown-item">Shopping Cart</a>
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('page.contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="" class="btn px-0">
-                                <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
-                            </a>
-                            <a href="" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
-                            </a>
-                        </div>
+                        @if (Auth::user())
+                            <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                                <a href="" class="btn px-0">
+                                    <i class="fas fa-heart text-primary"></i>
+                                    <span class="badge text-secondary border border-secondary rounded-circle"
+                                        style="padding-bottom: 2px;">0</span>
+                                </a>
+                                <a href="{{ route('page.cart.index') }}" class="btn px-0 ml-3">
+                                    <i class="fas fa-shopping-cart text-primary"></i>
+                                    <span class="badge text-secondary border border-secondary rounded-circle"
+                                        style="padding-bottom: 2px;">{{ Auth::user()->cart()->count() }}</span>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </nav>
             </div>

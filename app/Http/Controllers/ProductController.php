@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeMail;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 
@@ -68,6 +70,7 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'image' => $image_name
         ]);
+        
         return redirect()->route('dashboard.product.index')->with('success', 'Product created successfully.');
     }
 
