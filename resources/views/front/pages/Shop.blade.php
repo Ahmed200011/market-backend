@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="text-center py-4">
                                     <a class="h6 text-decoration-none text-truncate"
-                                        href="">{{ Str::limit($product->product_name, 20, '...') }}</a>
+                                        href="{{route('page.singleProduct',$product->id)}}">{{ Str::limit($product->product_name, 20, '...') }}</a>
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <h5>{{ $product->price }}</h5>
                                         {{-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> --}}

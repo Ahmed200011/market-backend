@@ -1,13 +1,18 @@
 <?php
 
+use App\Http\Controllers\front\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Front\AddToCartController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PageController;
 use App\Http\Controllers\Front\ShopController;
+use App\Http\Controllers\front\SingleProductController;
+use App\Http\Controllers\Front\UserAddressController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -42,7 +47,6 @@ Route::group(
                 Route::resource('user', UserController::class);
                 Route::resource('Category', CategoryController::class);
                 Route::resource('product', ProductController::class);
-
             });
 
         Route::middleware('auth')->group(function () {
@@ -52,13 +56,17 @@ Route::group(
         });
 
         Route::prefix('/page')
-        ->as('page.')
-        ->group(function () {
-            Route::get('/home',HomeController::class)->name('home');
-            Route::resource('/shop', ShopController::class );
-
-
-        });
+            ->as('page.')
+            ->group(function () {
+                Route::get('/home', HomeController::class)->name('home');
+                Route::resource('/shop', ShopController::class);
+                Route::get('/product/{id}', [SingleProductController::class,'index'])->name('singleProduct');
+                Route::post('/product', [SingleProductController::class,'addToCart'])->name('addToCart');
+                Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+                Route::post('/contact', [ContactController::class, 'submit'])->name('submit');
+                Route::resource('/cart',CartController::class);
+                Route::resource('/payment',UserAddressController::class);
+            });
 
         require __DIR__ . '/auth.php';
     }

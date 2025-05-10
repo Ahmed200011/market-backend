@@ -94,7 +94,12 @@ class CategoryController extends Controller
             $image_name = uniqid() . $name;
             $storing = $file->move(public_path('dashboard/assets/images/categoryImage'), $image_name);
         }
-        unlink(public_path('dashboard/assets/images/categoryImage/' . $category->image));
+        if ($category->image) {
+            $imagePath = public_path('dashboard/assets/images/user_image/' . $category->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
 
         $category->update([
             'category_name' => $request->category_name,
@@ -113,8 +118,12 @@ class CategoryController extends Controller
 
         // dd($category);
         $category = Category::find($id);
-        unlink(public_path('dashboard/assets/images/categoryImage/' . $category->image));
-
+        if ($category->image) {
+            $imagePath = public_path('dashboard/assets/images/user_image/' . $category->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
         if ($category->children()->count() > 0) {
             return redirect()->route('dashboard.Category.index')->with('error', 'Cannot delete category with subcategories.');
         }

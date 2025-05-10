@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         if ($request->user()->hasRole('super_admin')) {
             return redirect()->intended(route('dashboard.main'));
         } else {
-            return redirect()->intended(route('welcome'));
+            return redirect()->intended(route('page.home'));
         }
 
     }
@@ -48,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('page.home');
     }
 }
