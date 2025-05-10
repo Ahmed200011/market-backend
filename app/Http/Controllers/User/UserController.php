@@ -129,16 +129,25 @@ class UserController extends Controller
             $image_name = uniqid() . $name;
             //   $storing=  $file->store('image','public');
             $storing = $file->move(public_path('dashboard/assets/images/user_image'), $image_name);
-          
-            unlink(public_path('dashboard/assets/images/user_image/' . $user->image));
+            $storing = $storing->getFilename();
+            if ($user->image) {
+                $imagePath = public_path('dashboard/assets/images/user_image/' . $user->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
             //   dd($storing);
+        }
+        else {
+            $storing = $user->image;
         }
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             //اللي حصل ان ($storage)  بتجيب كامل المسار اللي موجود في الكمبيوتر عشان كدا عدلتها الي ($getfilename)
-            'image' => $storing->getFilename(),
+            'image' => $storing,
         ]);
 
 
@@ -166,7 +175,12 @@ class UserController extends Controller
         $user->roles()->detach();
         $user->permissions()->detach();
         $user->delete();
-        unlink(public_path('dashboard/assets/images/user_image/' . $user->image));
+        if ($user->image) {
+            $imagePath = public_path('dashboard/assets/images/user_image/' . $user->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
 
         return redirect()->route('dashboard.user.index')->with('success', 'User deleted successfully');
     }

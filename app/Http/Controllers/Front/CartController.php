@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+
 class CartController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class CartController extends Controller
         // $cartTotal = Cart::sum('total');
 
 
-        return view('front.pages.cart', compact('Categories','cart','products'));
+        return view('front.pages.cart', compact('Categories','products'));
     }
 
     /**

@@ -37,7 +37,7 @@
                             <span class="hide-menu">{{ __('validation.custom.home') }}</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('dashboard.main') }}" aria-expanded="false">
+                            <a @class(['sidebar-link','active'=>request()->routeIs('dashboard.main')]) href="{{ route('dashboard.main') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
@@ -49,7 +49,7 @@
                             <span class="hide-menu">Category</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route('dashboard.user.index')}}" aria-expanded="false">
+                            <a @class(['sidebar-link','active'=>request()->routeIs('dashboard.user.index')]) href="{{route('dashboard.user.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>
@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route('dashboard.Category.index')}}" aria-expanded="false">
+                            <a @class(['sidebar-link','active'=>request()->routeIs('dashboard.Category.index')]) href="{{route('dashboard.Category.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>
@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route('dashboard.product.index')}}" aria-expanded="false">
+                            <a @class(['sidebar-link','active'=>request()->routeIs('dashboard.product.index')]) href="{{route('dashboard.product.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>

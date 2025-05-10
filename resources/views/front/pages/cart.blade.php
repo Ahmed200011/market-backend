@@ -31,7 +31,9 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        @foreach (Auth::user()->cart as $cartItem)
+                        @if (Auth::user())
+
+                     @foreach (Auth::user()->cart as $cartItem)
                             @foreach ($products as $product)
                                 @if ($product->id == $cartItem->product_id)
                                     <form action="{{ route('page.cart.update', [$cartItem->id]) }}" method="post">
@@ -92,6 +94,9 @@
                                 @endif
                             @endforeach
                         @endforeach
+
+                        @endif
+
                     </tbody>
                 </table>
             </div>
@@ -110,7 +115,11 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>${{ Auth::user()->cart()->sum('total') }}</h6>
+                            @if (Auth::user())
+                                <h6>${{ Auth::user()->cart()->sum('total') }}</h6>
+
+                            @endif
+
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -120,9 +129,15 @@
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>${{ Auth::user()->cart()->sum('total') + 0 }}</h5>
+                            @if (Auth::user())
+                                <h5>${{ Auth::user()->cart()->sum('total') + 0 }}</h5>
+                            @endif
+
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                        @if (Auth::user())
+                        <a href="{{route('page.payment.index')}}" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</a>
+
+                        @endif
                     </div>
                 </div>
             </div>

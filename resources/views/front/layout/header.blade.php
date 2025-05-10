@@ -171,18 +171,19 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ route('page.home') }}" class="nav-item nav-link active">Home</a>
-                            <a href="{{ route('page.shop.index') }}" class="nav-item nav-link">Shop</a>
+                            <a href="{{ route('page.home') }}" @class(['nav-item', 'nav-link', 'active' => request()->routeIs('page.home')])>Home</a>
+
+                            <a href="{{ route('page.shop.index') }}"  @class(['nav-item', 'nav-link', 'active' => request()->routeIs('page.shop.index')])>Shop</a>
 
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
+                                <a href="#" class="nav-link dropdown-toggle" @class(['nav-link', 'dropdown-toggle', 'active'=>request()->is('page.cart/*') ? '' : 'hidden']) data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="{{ route('page.cart.index') }}" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                    <a href="{{ route('page.cart.index') }}" @class(['dropdown-item','active'=>request()->routeIs('page.cart.edit')])>Shopping Cart</a>
+                                    <a href="{{route('page.payment.index')}}" @class(['dropdown-item','active'=>request()->routeIs('page.payment.edit')])>Checkout</a>
                                 </div>
                             </div>
-                            <a href="{{ route('page.contact') }}" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('page.contact') }}" @class(['nav-item', 'nav-link', 'active' => request()->routeIs('page.contact')])>Contact</a>
                         </div>
                         @if (Auth::user())
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
