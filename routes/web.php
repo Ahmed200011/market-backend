@@ -56,6 +56,7 @@ Route::group(
         });
 
         Route::prefix('/page')
+        // ->middleware('verified')
             ->as('page.')
             ->group(function () {
                 Route::get('/home', HomeController::class)->name('home');

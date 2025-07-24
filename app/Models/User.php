@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Contracts\LaratrustUser;
@@ -10,7 +12,7 @@ use Laratrust\Traits\HasRolesAndPermissions;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements LaratrustUser
+class User extends Authenticatable implements LaratrustUser , MustVerifyEmail
 {
 
     use HasApiTokens, HasFactory, Notifiable,HasRolesAndPermissions;

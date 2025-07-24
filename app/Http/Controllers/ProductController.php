@@ -53,9 +53,9 @@ class ProductController extends Controller
             $resizedImage = $file->scale(height: 300, width: 248);
 
 
-            $path = public_path('dashboard/assets/images/products');
+            // $path = public_path('dashboard/assets/images/products');
             $image_name = uniqid() . $name;
-            $resizedImage->save($path . '/' . $image_name);
+            $resizedImage->save(public_path('dashboard/assets/images/products/'),$image_name);
             // $storing=$file->move(public_path('dashboard/assets/images/products'),$image_name);
             // dd($image_name);
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'image' => $image_name
         ]);
-        
+
         return redirect()->route('dashboard.product.index')->with('success', 'Product created successfully.');
     }
 
