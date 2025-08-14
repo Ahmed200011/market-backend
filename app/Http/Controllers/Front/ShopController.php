@@ -90,6 +90,6 @@ class ShopController extends Controller
 
         $products = $ProductQ->paginate(18);
         $Categories = Category::with(['parent', 'children'])->get();
-        return view('front.pages.shop', compact('products', 'Categories'));
+        return view('front.pages.Shop', compact('products', 'Categories'));
     }
 }

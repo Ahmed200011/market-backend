@@ -13,7 +13,7 @@ use App\Http\Controllers\Front\PageController;
 use App\Http\Controllers\Front\ShopController;
 use App\Http\Controllers\front\SingleProductController;
 use App\Http\Controllers\Front\UserAddressController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization; 
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +62,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             });
 
         require __DIR__ . '/auth.php';
-        
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
