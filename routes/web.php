@@ -25,7 +25,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/', function () {
+            return view('welcome');
+        })->name('welcome');
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -33,9 +35,7 @@ Route::group(
     ],
     function () {
 
-        Route::get('/', function () {
-            return view('welcome');
-        })->name('welcome');
+        
 
         Route::prefix('/dashboarda')
             ->as('dashboard.')
