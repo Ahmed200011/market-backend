@@ -25,17 +25,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
+ Route::get('/', function () {
             return view('welcome');
         })->name('welcome');
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ],
-    function () {
-
-        
 
         Route::prefix('/dashboarda')
             ->as('dashboard.')
@@ -70,5 +62,14 @@ Route::group(
             });
 
         require __DIR__ . '/auth.php';
+        
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
+
+
     }
 );
