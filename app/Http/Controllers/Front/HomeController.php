@@ -18,11 +18,14 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // Mail::to('am9695960@email.com')->send(new WelcomeMail(Auth::user()));
+        if(auth()->user()){
+
+            Mail::to(Auth::user()->email)->send(new WelcomeMail(Auth::user()));
+        }
         $Categories = Category::with(['parent', 'children'])->get();
         $featuredProducts = Product::with('category')->inRandomOrder()->take(8)->get();
         $latestProducts = Product::with('category')->inRandomOrder()->skip(8)->take(8)->get();
-    
+
         // $featuredProducts=Product::with('category')->where('status',1)->where('featured',1)->latest()->take(10)->get();
         // $bestSellingProducts=Product::with('category')->where('status',1)->where('best_selling',1)->latest()->take(10)->get();
         // $specialProducts=Product::with('category')->where('status',1)->where('special',1)->latest()->take(10)->get();
