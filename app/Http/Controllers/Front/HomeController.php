@@ -32,6 +32,6 @@ class HomeController extends Controller
         // $hotDealsProducts=Product::with('category')->where('status',1)->where('hot_deals',1)->latest()->take(10)->get();
         // $topRatedProducts=Product::with('category')->where('status',1)->where('top_rated',1)->latest()->take(10)->get();
         // $trendingProducts=Product::with('category')->where('status',1)->where('trending',1)->latest()->take(10)->get();
-        return view('front.pages.home', compact(['Categories', 'featuredProducts', 'latestProducts']));
+        return view('front.pages.Home', compact(['Categories', 'featuredProducts', 'latestProducts']));
     }
 }
